@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Étude Notariale Dupont & Associés</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;min-height:100vh;background:linear-gradient(135deg,#0d0d1a,#1a1a2e);display:flex;align-items:center;justify-content:center;padding:20px}
+.box{background:#fff;border-radius:18px;padding:38px 30px;width:100%;max-width:390px;border-top:4px solid #C9A84C;box-shadow:0 24px 64px rgba(0,0,0,.45)}
+.logo{text-align:center;margin-bottom:30px}
+.logo-ico{width:62px;height:62px;background:linear-gradient(135deg,#8B6914,#C9A84C);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#fff;margin:0 auto 12px}
+.logo h1{font-size:.95rem;font-weight:800;color:#1a1a2e;letter-spacing:.06em}
+.logo p{font-size:.68rem;color:#C9A84C;letter-spacing:.15em;text-transform:uppercase;margin-top:3px}
+.err{display:none;background:#fdecea;border:1px solid #f5c6c2;border-radius:8px;padding:9px 12px;margin-bottom:14px;font-size:.81rem;color:#c0392b;gap:7px;align-items:center}
+.err.show{display:flex}
+.fl{margin-bottom:15px}
+.fl label{display:block;font-size:.69rem;font-weight:700;color:#8a94a6;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.iw{position:relative}
+.iw i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#8a94a6;font-size:.83rem;pointer-events:none}
+.iw input{width:100%;padding:11px 40px 11px 36px;border:1.5px solid #dde2ec;border-radius:9px;font-size:.88rem;color:#1a1f36;background:#fafbff;outline:none;transition:.2s;font-family:inherit}
+.iw input:focus{border-color:#C9A84C;box-shadow:0 0 0 3px rgba(201,168,76,.1)}
+.eye{position:absolute;right:9px;top:50%;transform:translateY(-50%);background:#eef1f8;border:1.5px solid #dde2ec;border-radius:6px;width:28px;height:25px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#8a94a6;transition:.2s}
+.eye:hover{background:#C9A84C;color:#fff;border-color:#C9A84C}
+.btn{width:100%;padding:13px;background:linear-gradient(135deg,#8B6914,#C9A84C);color:#fff;border:none;border-radius:9px;font-size:.9rem;font-weight:700;cursor:pointer;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:9px;transition:.2s;box-shadow:0 4px 14px rgba(139,105,20,.28)}
+.btn:hover{transform:translateY(-1px)}
+.footer{text-align:center;margin-top:20px;font-size:.68rem;color:rgba(255,255,255,.22)}
+.spin{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:999}
+.spin.on{display:flex}
+.spin div{width:40px;height:40px;border:4px solid rgba(255,255,255,.2);border-top-color:#C9A84C;border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div>
+  <div class="box">
+    <div class="logo">
+      <div class="logo-ico"><i class="fas fa-balance-scale"></i></div>
+      <h1>Mé DUPONT &amp; ASSOCIÉS</h1>
+      <p>Notaires Associés — Paris</p>
+    </div>
+    <div class="err" id="err"><i class="fas fa-exclamation-triangle"></i><span>Identifiant ou mot de passe incorrect.</span></div>
+    <div class="fl">
+      <label>Identifiant</label>
+      <div class="iw"><i class="fas fa-user"></i><input type="text" id="u" placeholder="Votre identifiant"></div>
+    </div>
+    <div class="fl">
+      <label>Mot de passe</label>
+      <div class="iw">
+        <i class="fas fa-key"></i>
+        <input type="password" id="p" placeholder="••••••••">
+        <div class="eye" id="eye"><i class="fas fa-eye" id="eye-ico"></i></div>
+      </div>
+    </div>
+    <button class="btn" id="btnlogin"><i class="fas fa-sign-in-alt"></i> SE CONNECTER</button>
+  </div>
+  <p class="footer">© 2024 Étude Notariale Dupont &amp; Associés — Accès réservé</p>
+</div>
+<div class="spin" id="spin"><div></div></div>
+<script>
+document.getElementById("btnlogin").addEventListener("click", function() {
+  var u = document.getElementById("u").value.trim();
+  var p = document.getElementById("p").value;
+  document.getElementById("err").classList.remove("show");
+  if (u === "DjanIsFake" && p === "44454241") {
+    document.getElementById("spin").classList.add("on");
+    setTimeout(function() { window.location.href = "dashboard.html"; }, 800);
+  } else {
+    document.getElementById("err").classList.add("show");
+    document.getElementById("p").value = "";
+  }
+});
+document.getElementById("eye").addEventListener("click", function() {
+  var inp = document.getElementById("p");
+  var ico = document.getElementById("eye-ico");
+  if (inp.type === "password") { inp.type = "text"; ico.className = "fas fa-eye-slash"; }
+  else { inp.type = "password"; ico.className = "fas fa-eye"; }
+});
+document.addEventListener("keypress", function(e) {
+  if (e.key === "Enter") document.getElementById("btnlogin").click();
+});
+</script>
+</body>
+</html>
