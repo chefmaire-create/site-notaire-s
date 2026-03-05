@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabinet Notarial Dupont & Associés</title>
+    <style>:root {
+    --gold:#8B6914; --gold2:#C9A84C; --gold3:#F0D080; --gold-light:#faf5e4;
+    --dark:#1a1a2e; --dark2:#16213e;
+    --white:#fff; --gray:#8a94a6; --border:#dde2ec; --text:#1a1f36; --bg:#f5f3ee;
+    --red:#c0392b; --green:#27ae60; --blue:#2980b9;
+    --sidebar-w:260px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',Georgia,system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* ── LOGIN ── */
+.login-body{background:linear-gradient(160deg,#0d0d1a 0%,#1a1a2e 60%,#0d0d1a 100%);}
+.login-page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px;}
+.login-header{text-align:center;margin-bottom:32px;}
+.notaire-logo{display:flex;align-items:center;gap:14px;justify-content:center;margin-bottom:10px;}
+.logo-icon{width:64px;height:64px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:#fff;box-shadow:0 4px 20px rgba(139,105,20,0.45);}
+.logo-text .logo-title{font-size:1.15rem;font-weight:800;color:#fff;letter-spacing:.08em;display:block;}
+.logo-text .logo-sub{font-size:.62rem;color:var(--gold2);letter-spacing:.2em;text-transform:uppercase;display:block;}
+.login-tagline{color:rgba(255,255,255,0.38);font-size:.78rem;letter-spacing:.05em;}
+.login-card{background:#fff;border-radius:20px;padding:32px 26px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,0.4);border-top:4px solid var(--gold2);}
+.login-card-title{font-size:.82rem;font-weight:700;color:var(--gold);margin-bottom:22px;padding-bottom:12px;border-bottom:1px solid var(--border);letter-spacing:.08em;display:flex;align-items:center;gap:8px;}
+.login-error{display:none;background:#fdecea;border:1px solid #f5c6c2;border-radius:10px;padding:10px 13px;margin-bottom:14px;font-size:.82rem;color:var(--red);align-items:center;gap:8px;}
+.login-error.show{display:flex;}
+.field{margin-bottom:18px;}
+.field label{display:block;font-size:.7rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;}
+.input-wrap{position:relative;}
+.ico-left{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--gray);font-size:.85rem;pointer-events:none;}
+.input-wrap input{width:100%;padding:12px 44px 12px 38px;border:1.5px solid var(--border);border-radius:10px;font-size:.9rem;color:var(--text);background:#fafbff;outline:none;transition:.2s;font-family:inherit;}
+.input-wrap input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(139,105,20,0.10);}
+.input-wrap input::placeholder{color:#c0c8da;}
+.btn-eye{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:#eef1f8;border:1.5px solid var(--border);border-radius:7px;width:30px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--gray);font-size:.82rem;transition:.2s;}
+.btn-eye:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.btn-login{width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;border:none;border-radius:10px;font-size:.92rem;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:.22s;box-shadow:0 4px 16px rgba(139,105,20,0.30);display:flex;align-items:center;justify-content:center;gap:10px;}
+.btn-login:hover{transform:translateY(-1px);}
+.login-footer{margin-top:22px;text-align:center;}
+.badges{display:flex;gap:14px;justify-content:center;margin-bottom:8px;}
+.badge{font-size:.72rem;color:rgba(255,255,255,0.38);display:flex;align-items:center;gap:5px;}
+.badge i{color:var(--gold2);}
+.login-footer p{font-size:.68rem;color:rgba(255,255,255,0.22);}
+
+/* ── LAYOUT DASHBOARD ── */
+.dash-layout{display:flex;min-height:100vh;}
+
+/* SIDEBAR */
+.sidebar{width:var(--sidebar-w);background:linear-gradient(180deg,var(--dark) 0%,var(--dark2) 100%);position:fixed;top:0;left:0;height:100vh;display:flex;flex-direction:column;z-index:200;transition:.3s;}
+.sidebar-header{padding:22px 20px 18px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.sidebar-logo{display:flex;align-items:center;gap:10px;}
+.sidebar-logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.95rem;color:#fff;flex-shrink:0;}
+.sidebar-logo-text .sl-title{font-size:.82rem;font-weight:800;color:#fff;letter-spacing:.06em;display:block;}
+.sidebar-logo-text .sl-sub{font-size:.58rem;color:var(--gold2);letter-spacing:.14em;display:block;margin-top:1px;}
+.sidebar-nav{flex:1;padding:16px 0;overflow-y:auto;}
+.nav-section-label{font-size:.6rem;font-weight:700;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:.12em;padding:12px 20px 6px;}
+.nav-item{display:flex;align-items:center;gap:12px;padding:11px 20px;cursor:pointer;transition:.18s;border-left:3px solid transparent;color:rgba(255,255,255,0.6);font-size:.83rem;font-weight:500;}
+.nav-item:hover{background:rgba(255,255,255,0.06);color:#fff;border-left-color:var(--gold2);}
+.nav-item.active{background:rgba(201,168,76,0.15);color:var(--gold2);border-left-color:var(--gold2);font-weight:700;}
+.nav-item i{width:18px;text-align:center;font-size:.88rem;}
+.sidebar-footer{padding:16px 20px;border-top:1px solid rgba(255,255,255,0.08);}
+.btn-logout{width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);color:rgba(255,255,255,0.6);padding:10px;border-radius:9px;font-size:.8rem;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+.btn-logout:hover{background:rgba(255,255,255,0.12);color:#fff;}
+
+/* TOPBAR */
+.dash-content{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;min-height:100vh;}
+.topbar{background:#fff;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(0,0,0,0.07);position:sticky;top:0;z-index:100;}
+.topbar-title{font-size:1rem;font-weight:700;color:var(--dark);}
+.topbar-title span{color:var(--gold);font-size:.8rem;font-weight:500;margin-left:8px;}
+.topbar-right{display:flex;align-items:center;gap:10px;}
+.topbar-date{font-size:.75rem;color:var(--gray);}
+
+/* PAGE ACCUEIL */
+.dash-home{padding:28px;}
+.welcome-banner{background:linear-gradient(135deg,var(--dark),var(--dark2));border-radius:16px;padding:28px 32px;margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;overflow:hidden;position:relative;}
+.welcome-banner::before{content:'';position:absolute;top:-30px;right:-30px;width:180px;height:180px;border-radius:50%;background:rgba(201,168,76,0.08);}
+.welcome-text h2{font-size:1.3rem;font-weight:800;color:#fff;margin-bottom:6px;}
+.welcome-text p{font-size:.82rem;color:rgba(255,255,255,0.5);}
+.welcome-icon{font-size:3rem;color:var(--gold2);opacity:.6;}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px;}
+.stat-card{background:#fff;border-radius:14px;padding:20px;box-shadow:0 2px 16px rgba(0,0,0,0.06);border-bottom:3px solid var(--gold2);}
+.stat-card .stat-num{font-size:1.8rem;font-weight:800;color:var(--dark);}
+.stat-card .stat-label{font-size:.72rem;color:var(--gray);text-transform:uppercase;letter-spacing:.06em;margin-top:4px;}
+.stat-card .stat-icon{font-size:1.4rem;color:var(--gold2);margin-bottom:8px;}
+.docs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.doc-card{background:#fff;border-radius:14px;padding:22px;box-shadow:0 2px 16px rgba(0,0,0,0.06);cursor:pointer;transition:.22s;border-left:4px solid var(--gold2);display:flex;align-items:center;gap:16px;}
+.doc-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,0.12);}
+.doc-card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+.doc-card-icon.gold{background:var(--gold-light);color:var(--gold);}
+.doc-card-icon.blue{background:#e8f4fd;color:var(--blue);}
+.doc-card-icon.red{background:#fdecea;color:var(--red);}
+.doc-card-icon.green{background:#eafaf1;color:var(--green);}
+.doc-card-icon.purple{background:#f5eef8;color:#8e44ad;}
+.doc-card-icon.orange{background:#fef9e7;color:#e67e22;}
+.doc-card-info h4{font-size:.88rem;font-weight:700;color:var(--dark);}
+.doc-card-info p{font-size:.73rem;color:var(--gray);margin-top:3px;}
+
+/* FORMULAIRES */
+.form-page{padding:28px;display:none;}
+.form-page.active{display:block;}
+.form-page-header{margin-bottom:24px;}
+.form-page-header h2{font-size:1.1rem;font-weight:800;color:var(--dark);display:flex;align-items:center;gap:10px;}
+.form-page-header h2 i{color:var(--gold2);}
+.form-page-header p{font-size:.8rem;color:var(--gray);margin-top:4px;}
+.form-card{background:#fff;border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:0 2px 16px rgba(0,0,0,0.06);border-left:4px solid var(--gold2);}
+.section-title{font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--gold3);display:flex;align-items:center;gap:8px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-grid.col3{grid-template-columns:1fr 1fr 1fr;}
+.form-grid.full{grid-template-columns:1fr;}
+@media(max-width:700px){.form-grid,.form-grid.col3{grid-template-columns:1fr;} .stats-grid,.docs-grid{grid-template-columns:1fr;} .sidebar{transform:translateX(-100%);} .dash-content{margin-left:0;}}
+.field-dash label{display:block;font-size:.68rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;}
+.field-dash input,.field-dash select,.field-dash textarea{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:9px;font-size:.87rem;color:var(--text);background:#fafbff;outline:none;transition:.2s;font-family:inherit;}
+.field-dash input:focus,.field-dash select:focus,.field-dash textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(139,105,20,0.08);}
+.field-dash textarea{resize:vertical;min-height:85px;}
+
+/* HÉRITIERS / BLOCS DYNAMIQUES */
+.dynamic-block{background:#fafaf7;border:1.5px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px;position:relative;}
+.dynamic-block h4{font-size:.75rem;font-weight:700;color:var(--gold);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em;}
+.btn-remove-block{position:absolute;top:12px;right:12px;background:#fdecea;border:none;color:var(--red);width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;}
+.btn-add-block{background:transparent;border:2px dashed var(--gold2);color:var(--gold);padding:10px 18px;border-radius:10px;font-size:.8rem;font-weight:600;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:8px;margin-top:8px;}
+.btn-add-block:hover{background:var(--gold-light);}
+
+/* SIGNATURE */
+.signature-zone{border:2px dashed var(--gold2);border-radius:12px;overflow:hidden;background:#fffef9;}
+.signature-canvas{display:block;width:100%;height:150px;cursor:crosshair;touch-action:none;}
+.sig-actions{display:flex;gap:8px;padding:8px 12px;background:#fafaf5;border-top:1px solid var(--border);}
+.btn-clear-sig{background:#fdecea;border:none;color:var(--red);padding:6px 12px;border-radius:7px;font-size:.75rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;}
+.sig-label{font-size:.7rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;}
+
+/* BOUTONS ACTION */
+.actions-bar{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;}
+.btn-preview{flex:1;min-width:150px;padding:13px 18px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;border:none;border-radius:11px;font-size:.88rem;font-weight:700;cursor:pointer;transition:.22s;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(139,105,20,0.25);}
+.btn-preview:hover{transform:translateY(-1px);}
+.btn-pdf{flex:1;min-width:150px;padding:13px 18px;background:linear-gradient(135deg,#c0392b,#e74c3c);color:#fff;border:none;border-radius:11px;font-size:.88rem;font-weight:700;cursor:pointer;transition:.22s;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(192,57,43,0.22);}
+.btn-pdf:hover{transform:translateY(-1px);}
+
+/* MODAL APERCU */
+.modal-overlay{position:fixed;inset:0;background:rgba(10,10,20,0.78);backdrop-filter:blur(6px);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;padding:16px;}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal-doc{background:#fff;border-radius:16px;width:100%;max-width:740px;max-height:92vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.35);transform:scale(.95);transition:transform .28s cubic-bezier(.32,1.2,.5,1);}
+.modal-overlay.open .modal-doc{transform:scale(1);}
+.modal-doc-header{background:linear-gradient(135deg,var(--dark),var(--dark2));padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-radius:16px 16px 0 0;position:sticky;top:0;}
+.modal-doc-header h3{color:#fff;font-size:.88rem;font-weight:700;display:flex;align-items:center;gap:8px;}
+.btn-close-modal{background:rgba(255,255,255,0.1);border:none;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;}
+
+/* DOCUMENT RENDU */
+.doc-content{padding:40px 48px;font-family:Georgia,serif;}
+.doc-entete{text-align:center;border-bottom:3px double var(--gold2);padding-bottom:22px;margin-bottom:26px;}
+.doc-entete .balance{font-size:2.4rem;color:var(--gold2);margin-bottom:8px;}
+.doc-entete h1{font-size:1.1rem;font-weight:800;color:var(--dark);letter-spacing:.1em;text-transform:uppercase;}
+.doc-entete p{font-size:.75rem;color:var(--gray);margin-top:3px;}
+.doc-ref{text-align:right;font-size:.72rem;color:var(--gray);margin-bottom:22px;font-style:italic;}
+.doc-titre{text-align:center;margin:22px 0;padding:13px;border:2px solid var(--gold2);border-radius:4px;}
+.doc-titre h2{font-size:.95rem;font-weight:800;color:var(--dark);letter-spacing:.1em;text-transform:uppercase;}
+.doc-section{margin-bottom:20px;}
+.doc-section h3{font-size:.77rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:9px;padding-bottom:5px;border-bottom:1px solid var(--gold3);}
+.doc-section p{font-size:.86rem;line-height:1.85;color:#333;text-align:justify;}
+.doc-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.8rem;}
+.doc-table th{background:var(--dark);color:#fff;padding:7px 10px;text-align:left;font-size:.7rem;letter-spacing:.05em;}
+.doc-table td{padding:7px 10px;border-bottom:1px solid #eee;}
+.doc-table tr:nth-child(even) td{background:#fafaf7;}
+.doc-sig-zone{margin-top:34px;display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.sig-box{text-align:center;}
+.sig-box .sig-lbl{font-size:.72rem;color:var(--gray);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;}
+.sig-box img{max-width:100%;height:75px;object-fit:contain;border-bottom:1px solid #ccc;padding-bottom:4px;}
+.sig-box .sig-nm{font-size:.76rem;font-weight:700;color:var(--dark);margin-top:6px;}
+.doc-footer{margin-top:32px;padding-top:14px;border-top:2px solid var(--gold3);text-align:center;font-size:.68rem;color:var(--gray);font-style:italic;line-height:1.7;}
+
+/* SPINNER / TOAST */
+.spinner-overlay{position:fixed;inset:0;background:rgba(10,10,20,0.5);z-index:9998;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.2s;}
+.spinner-overlay.show{opacity:1;pointer-events:all;}
+.spinner{width:44px;height:44px;border:4px solid rgba(255,255,255,0.2);border-top-color:var(--gold2);border-radius:50%;animation:spin .7s linear infinite;}
+.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--dark);color:#fff;padding:11px 22px;border-radius:28px;font-size:.82rem;font-weight:500;z-index:9999;transition:transform .3s cubic-bezier(.32,1.2,.5,1);white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,0.25);}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast.success{background:var(--gold);}
+.toast.error{background:var(--red);}
+.toast.info{background:var(--blue);}
+@keyframes spin{to{transform:rotate(360deg);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* IMPORT SIGNATURE */
+.btn-import-sig{background:#e8f4fd;border:none;color:#2980b9;padding:6px 12px;border-radius:7px;font-size:.75rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:5px;}
+.btn-import-sig:hover{background:#2980b9;color:#fff;}
+
+/* SUGGESTIONS */
+.suggestions-box{margin-top:8px;padding:10px 12px;background:linear-gradient(135deg,#faf5e4,#fff8e8);border:1.5px solid var(--gold3);border-radius:10px;}
+.sug-label{font-size:.68rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;display:flex;align-items:center;gap:5px;}
+.sug-btn{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--gold3);color:var(--text);padding:7px 11px;border-radius:8px;font-size:.79rem;cursor:pointer;transition:.18s;margin-bottom:5px;line-height:1.4;}
+.sug-btn:last-child{margin-bottom:0;}
+.sug-btn:hover{background:var(--gold-light);border-color:var(--gold2);color:var(--gold);}
+.sug-btn.active{background:var(--gold-light);border-color:var(--gold);color:var(--gold);font-weight:600;}
+</style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+<div class="dash-layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-logo">
+            <div class="sidebar-logo-icon"><i class="fas fa-balance-scale"></i></div>
+            <div class="sidebar-logo-text">
+                <span class="sl-title">Mé DUPONT</span>
+                <span class="sl-sub">& ASSOCIÉS · NOTAIRES</span>
+            </div>
+        </div>
+    </div>
+    <nav class="sidebar-nav">
+        <div class="nav-section-label">Navigation</div>
+        <div class="nav-item active" onclick="showPage('home')"><i class="fas fa-home"></i> Accueil</div>
+        <div class="nav-section-label">Documents</div>
+        <div class="nav-item" onclick="showPage('testament')"><i class="fas fa-scroll"></i> Testament / Succession</div>
+        <div class="nav-item" onclick="showPage('vente')"><i class="fas fa-home"></i> Acte de Vente Immobilière</div>
+        <div class="nav-item" onclick="showPage('compte')"><i class="fas fa-university"></i> Compte Bancaire Bloqué</div>
+        <div class="nav-item" onclick="showPage('procuration')"><i class="fas fa-file-signature"></i> Procuration Notariée</div>
+        <div class="nav-item" onclick="showPage('donation')"><i class="fas fa-hand-holding-heart"></i> Donation entre Vifs</div>
+        <div class="nav-item" onclick="showPage('mariage')"><i class="fas fa-ring"></i> Contrat de Mariage</div>
+    </nav>
+    <div class="sidebar-footer">
+        <button class="btn-logout" onclick="window.location.href='index.html'"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
+    </div>
+</aside>
+
+<!-- CONTENU PRINCIPAL -->
+<div class="dash-content">
+    <div class="topbar">
+        <div class="topbar-title" id="topbar-title">Tableau de bord <span>Cabinet Notarial</span></div>
+        <div class="topbar-right">
+            <span class="topbar-date" id="topbar-date"></span>
+        </div>
+    </div>
+
+    <!-- ══ PAGE ACCUEIL ══ -->
+    <div class="form-page active" id="page-home">
+        <div style="padding:28px;">
+            <div class="welcome-banner">
+                <div class="welcome-text">
+                    <h2>Bienvenue, Maître Dupont</h2>
+                    <p>Cabinet notarial numérique · 6 types d'actes disponibles · Génération PDF officielle</p>
+                </div>
+                <div class="welcome-icon"><i class="fas fa-balance-scale"></i></div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-file-alt"></i></div><div class="stat-num">6</div><div class="stat-label">Types d'actes</div></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-file-pdf"></i></div><div class="stat-num">PDF</div><div class="stat-label">Export officiel</div></div>
+                <div class="stat-card"><div class="stat-icon"><i class="fas fa-pen-nib"></i></div><div class="stat-num">E-Sign</div><div class="stat-label">Signature électronique</div></div>
+            </div>
+            <div style="font-size:.75rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--gold3);">SÉLECTIONNER UN ACTE</div>
+            <div class="docs-grid">
+                <div class="doc-card" onclick="showPage('testament')"><div class="doc-card-icon gold"><i class="fas fa-scroll"></i></div><div class="doc-card-info"><h4>Testament / Succession</h4><p>Acte de dernières volontés et répartition du patrimoine</p></div></div>
+                <div class="doc-card" onclick="showPage('vente')"><div class="doc-card-icon blue"><i class="fas fa-home"></i></div><div class="doc-card-info"><h4>Acte de Vente Immobilière</h4><p>Transfert de propriété immobilière authentifié</p></div></div>
+                <div class="doc-card" onclick="showPage('compte')"><div class="doc-card-icon red"><i class="fas fa-university"></i></div><div class="doc-card-info"><h4>Compte Bancaire Bloqué</h4><p>Déblocage de fonds suite à succession ou décision judiciaire</p></div></div>
+                <div class="doc-card" onclick="showPage('procuration')"><div class="doc-card-icon green"><i class="fas fa-file-signature"></i></div><div class="doc-card-info"><h4>Procuration Notariée</h4><p>Délégation de pouvoirs authentifiée par acte notarié</p></div></div>
+                <div class="doc-card" onclick="showPage('donation')"><div class="doc-card-icon purple"><i class="fas fa-hand-holding-heart"></i></div><div class="doc-card-info"><h4>Donation entre Vifs</h4><p>Transfert irrévocable de biens du vivant du donateur</p></div></div>
+                <div class="doc-card" onclick="showPage('mariage')"><div class="doc-card-icon orange"><i class="fas fa-ring"></i></div><div class="doc-card-info"><h4>Contrat de Mariage</h4><p>Régime matrimonial et dispositions patrimoniales</p></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ TESTAMENT ══ -->
+    <div class="form-page" id="page-testament">
+      <div class="form-page-header"><h2><i class="fas fa-scroll"></i> Testament / Succession</h2><p>Acte authentique de testament olographe — Répartition du patrimoine</p></div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-user"></i> Testateur</div>
+        <div class="form-grid">
+          <div class="field-dash"><label>Nom</label><input type="text" id="ts-nom" placeholder="Nom de famille"></div>
+          <div class="field-dash"><label>Prénom</label><input type="text" id="ts-prenom" placeholder="Prénom(s)"></div>
+          <div class="field-dash"><label>Date de naissance</label><input type="date" id="ts-dob"></div>
+          <div class="field-dash"><label>Lieu de naissance</label><input type="text" id="ts-lieu" placeholder="Ville, Département"></div>
+          <div class="field-dash"><label>Situation</label><select id="ts-sit"><option>Célibataire</option><option>Marié(e)</option><option>Divorcé(e)</option><option>Veuf(ve)</option></select></div>
+          <div class="field-dash"><label>Nationalité</label><input type="text" id="ts-nat" value="Française"></div>
+          <div class="field-dash form-grid full"><label>Adresse</label><input type="text" id="ts-adr" placeholder="Adresse complète"></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-home"></i> Patrimoine</div>
+        <div class="form-grid">
+          <div class="field-dash"><label>Valeur totale (€)</label><input type="number" id="ts-val" placeholder="Ex: 500000"></div>
+          <div class="field-dash"><label>Dont immobilier (€)</label><input type="number" id="ts-immo" placeholder="Ex: 300000"></div>
+          <div class="field-dash form-grid full"><label>Description des biens</label><textarea id="ts-desc" placeholder="Appartements, véhicules, comptes..."></textarea></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-users"></i> Héritiers</div>
+        <div id="ts-heritiers"></div>
+        <button class="btn-add-block" onclick="addHeritier()"><i class="fas fa-plus-circle"></i> Ajouter un héritier</button>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-pen"></i> Volontés & Notaire</div>
+        <div class="form-grid">
+          <div class="field-dash"><label>Exécuteur testamentaire</label><input type="text" id="ts-exec" placeholder="Nom complet"></div>
+          <div class="field-dash"><label>Date de l'acte</label><input type="date" id="ts-date"></div>
+          <div class="field-dash form-grid full"><label>Dispositions particulières</label><textarea id="ts-disp" placeholder="Volontés spécifiques..."></textarea></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-pen-nib"></i> Signatures</div>
+        <div class="form-grid">
+          <div><div class="sig-label">Signature du Testateur</div><div class="signature-zone"><canvas class="signature-canvas" id="sig-ts-t"></canvas><div class="sig-actions"><button class="btn-clear-sig" onclick="clearSig('sig-ts-t')"><i class="fas fa-eraser"></i> Effacer</button><label class="btn-import-sig"><i class="fas fa-upload"></i> Importer<input type="file" accept="image/*" style="display:none" onchange="importSig(this,'sig-ts-t')"></label></div></div></div>
+          <div><div class="sig-label">Signature du Notaire</div><div class="signature-zone"><canvas class="signature-canvas" id="sig-ts-n"></canvas><div class="sig-actions"><button class="btn-clear-sig" onclick="clearSig('sig-ts-n')"><i class="fas fa-eraser"></i> Effacer</button><label class="btn-import-sig"><i class="fas fa-upload"></i> Importer<input type="file" accept="image/*" style="display:none" onchange="importSig(this,'sig-ts-n')"></label></div></div></div>
+        </div>
+      </div>
+      <div class="actions-bar">
+        <button class="btn-preview" onclick="previewDoc('testament')"><i class="fas fa-eye"></i> PRÉVISUALISER</button>
+        <button class="btn-pdf" onclick="downloadPDF('testament')"><i class="fas fa-file-pdf"></i> TÉLÉCHARGER PDF</button>
+      </div>
+    </div>
+
+    <!-- ══ VENTE IMMOBILIÈRE ══ -->
+    <div class="form-page" id="page-vente">
+      <div class="form-page-header"><h2><i class="fas fa-home"></i> Acte de Vente Immobilière</h2><p>Transfert authentique de propriété immobilière</p></div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-user"></i> Vendeur</div>
+        <div class="form-grid">
+          <div class="field-dash"><label>Nom & Prénom</label><input type="text" id="vi-vnom" placeholder="Nom complet du vendeur"></div>
+          <div class="field-dash"><label>Date de naissance</label><input type="date" id="vi-vdob"></div>
+          <div class="field-dash"><label>Adresse</label><input type="text" id="vi-vadr" placeholder="Adresse complète"></div>
+          <div class="field-dash"><label>Nationalité</label><input type="text" id="vi-vnat" value="Française"></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-user-tie"></i> Acheteur</div>
+        <div class="form-grid">
+          <div class="field-dash"><label>Nom & Prénom</label><input type="text" id="vi-anom" placeholder="Nom complet de l'acheteur"></div>
+          <div class="field-dash"><label>Date de naissance</label><input type="date" id="vi-adob"></div>
+          <div class="field-dash"><label>Adresse</label><input type="text" id="vi-aadr" placeholder="Adresse complète"></div>
+          <div class="field-dash"><label>Nationalité</label><input type="text" id="vi-anat" value="Française"></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-building"></i> Bien Immobilier</div>
+        <div class="form-grid">
+          <div class="field-dash"><label>Type de bien</label><select id="vi-type"><option>Appartement</option><option>Maison</option><option>Terrain</option><option>Local commercial</option><option>Immeuble</option></select></div>
+          <div class="field-dash"><label>Surface (m²)</label><input type="number" id="vi-surf" placeholder="Ex: 85"></div>
+          <div class="field-dash"><label>Prix de vente (€)</label><input type="number" id="vi-prix" placeholder="Ex: 350000"></div>
+          <div class="field-dash"><label>Date de l'acte</label><input type="date" id="vi-date"></div>
+          <div class="field-dash form-grid full"><label>Adresse du bien</label><input type="text" id="vi-bien-adr" placeholder="Adresse complète du bien vendu"></div>
+          <div class="field-dash form-grid full"><label>Références cadastrales</label><input type="text" id="vi-cadastre" placeholder="Section, numéro de parcelle..."></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-pen-nib"></i> Signatures</div>
+        <div class="form-grid">
+          <div><div class="sig-label">Signature Vendeur</div><div class="signature-zone"><canvas class="signature-canvas" id="sig-vi-v"></canvas><div class="sig-actions"><button class="btn-clear-sig" onclick="clearSig('sig-vi-v')"><i class="fas fa-eraser"></i> Effacer</button><label class="btn-import-sig"><i class="fas fa-upload"></i> Importer<input type="file" accept="image/*" style="display:none" onchange="importSig(this,'sig-vi-v')"></label></div></div></div>
+          <div><div class="sig-label">Signature Acheteur</div><div class="signature-zone"><canvas class="signature-canvas" id="sig-vi-a"></canvas><div class="sig-actions"><button class="btn-clear-sig" onclick="clearSig('sig-vi-a')"><i class="fas fa-eraser"></i> Effacer</button><label class="btn-import-sig"><i class="fas fa-upload"></i> Importer<input type="file" accept="image/*" style="display:none" onchange="importSig(this,'sig-vi-a')"></label></div></div></div>
+          <div><div class="sig-label">Signature Notaire</div><div class="signature-zone"><canvas class="signature-canvas" id="sig-vi-n"></canvas><div class="sig-actions"><button class="btn-clear-sig" onclick="clearSig('sig-vi-n')"><i class="fas fa-eraser"></i> Effacer</button><label class="btn-import-sig"><i class="fas fa-upload"></i> Importer<input type="file" accept="image/*" style="display:none" onchange="importSig(this,'sig-vi-n')"></label></div></div></div>
+        </div>
+      </div>
+      <div class="actions-bar">
+        <button class="btn-preview" onclick="previewDoc('vente')"><i class="fas fa-eye"></i> PRÉVISUALISER</button>
+        <button class="btn-pdf" onclick="downloadPDF('vente')"><i class="fas fa-file-pdf"></i> TÉLÉCHARGER PDF</button>
+      </div>
+    </div>
+
+    <!-- ══ COMPTE BANCAIRE BLOQUÉ ══ -->
+    <div class="form-page" id="page-compte">
+      <div class="form-page-header"><h2><i class="fas fa-university"></i> Compte Bancaire Bloqué</h2><p>Acte notarié de déblocage de fonds — Succession ou décision judiciaire</p></div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-user"></i> Titulaire du Compte</div>
+        <div class="form-grid">
+          <div class="field-dash"><label>Nom & Prénom</label><input type="text" id="cb-nom" placeholder="Titulaire du compte"></div>
+          <div class="field-dash"><label>Date de décès (si succession)</label><input type="date" id="cb-deces"></div>
+          <div class="field-dash"><label>Adresse</label><input type="text" id="cb-adr" placeholder="Dernière adresse connue"></div>
+          <div class="field-dash"><label>Numéro de compte</label><input type="text" id="cb-compte" placeholder="IBAN ou numéro compte"></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-university"></i> Établissement Bancaire</div>
+        <div class="form-grid">
+          <div class="field-dash"><label>Nom de la banque</label><input type="text" id="cb-banque" placeholder="Ex: BNP Paribas, CIC..."></div>
+          <div class="field-dash"><label>Agence / Ville</label><input type="text" id="cb-agence" placeholder="Agence concernée"></div>
+          <div class="field-dash"><label>Montant bloqué (€)</label><input type="number" id="cb-montant" placeholder="Montant total bloqué"></div>
+          <div class="field-dash"><label>Motif du blocage</label><select id="cb-motif"><option>Succession</option><option>Décision judiciaire</option><option>Saisie conservatoire</option><option>Autre</option></select></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-users"></i> Bénéficiaire(s) du Déblocage</div>
+        <div id="cb-benefs"></div>
+        <button class="btn-add-block" onclick="addBenef()"><i class="fas fa-plus-circle"></i> Ajouter un bénéficiaire</button>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-gavel"></i> Décision & Date</div>
+        <div class="form-grid">
+          <div class="field-dash"><label>Référence de l'acte judiciaire</label><input type="text" id="cb-ref-judiciaire" placeholder="N° décision ou jugement"></div>
+          <div class="field-dash"><label>Date de l'acte notarial</label><input type="date" id="cb-date"></div>
+          <div class="field-dash form-grid full"><label>Observations</label><textarea id="cb-obs" placeholder="Informations complémentaires..."></textarea></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-pen-nib"></i> Signature du Notaire</div>
+        <div style="max-width:400px;">
+          <div class="sig-label">Signature du Notaire</div>
+          <div class="signature-zone"><canvas class="signature-canvas" id="sig-cb-n"></canvas><div class="sig-actions"><button class="btn-clear-sig" onclick="clearSig('sig-cb-n')"><i class="fas fa-eraser"></i> Effacer</button><label class="btn-import-sig"><i class="fas fa-upload"></i> Importer<input type="file" accept="image/*" style="display:none" onchange="importSig(this,'sig-cb-n')"></label></div></div>
+        </div>
+      </div>
+      <div class="actions-bar">
+        <button class="btn-preview" onclick="previewDoc('compte')"><i class="fas fa-eye"></i> PRÉVISUALISER</button>
+        <button class="btn-pdf" onclick="downloadPDF('compte')"><i class="fas fa-file-pdf"></i> TÉLÉCHARGER PDF</button>
+      </div>
+    </div>
+
+    <!-- ══ PROCURATION ══ -->
+    <div class="form-page" id="page-procuration">
+      <div class="form-page-header"><h2><i class="fas fa-file-signature"></i> Procuration Notariée</h2><p>Délégation de pouvoirs authentifiée par acte notarié</p></div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-user"></i> Mandant (Celui qui donne le pouvoir)</div>
+        <div class="form-grid">
+          <div class="field-dash"><label>Nom & Prénom</label><input type="text" id="pr-mnom" placeholder="Nom complet du mandant"></div>
+          <div class="field-dash"><label>Date de naissance</label><input type="date" id="pr-mdob"></div>
+          <div class="field-dash"><label>Adresse</label><input type="text" id="pr-madr" placeholder="Adresse complète"></div>
+          <div class="field-dash"><label>Nationalité</label><input type="text" id="pr-mnat" value="Française"></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-user-tie"></i> Mandataire (Celui qui reçoit le pouvoir)</div>
+        <div class="form-grid">
+          <div class="field-dash"><label>Nom & Prénom</label><input type="text" id="pr-tnom" placeholder="Nom complet du mandataire"></div>
+          <div class="field-dash"><label>Date de naissance</label><input type="date" id="pr-tdob"></div>
+          <div class="field-dash"><label>Adresse</label><input type="text" id="pr-tadr" placeholder="Adresse complète"></div>
+          <div class="field-dash"><label>Lien avec le mandant</label><input type="text" id="pr-lien" placeholder="Ex: Conjoint, Enfant, Avocat..."></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-list"></i> Pouvoirs Conférés</div>
+        <div class="form-grid full">
+          <div class="field-dash"><label>Nature des pouvoirs</label>
+            <select id="pr-nature">
+              <option>Procuration générale</option>
+              <option>Procuration immobilière</option>
+              <option>Procuration bancaire</option>
+              <option>Procuration administrative</option>
+              <option>Procuration spéciale</option>
+            </select>
+          </div>
+          <div class="field-dash" style="margin-top:12px;"><label>Description détaillée des pouvoirs</label><textarea id="pr-pouvoirs" placeholder="Décrire précisément les actes que le mandataire peut effectuer..."></textarea></div>
+          <div class="field-dash" style="margin-top:12px;"><label>Durée de validité</label><input type="text" id="pr-duree" placeholder="Ex: 1 an, indéterminée, jusqu'au 31/12/2025"></div>
+          <div class="field-dash" style="margin-top:12px;"><label>Date de l'acte</label><input type="date" id="pr-date"></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-pen-nib"></i> Signatures</div>
+        <div class="form-grid">
+          <div><div class="sig-label">Signature du Mandant</div><div class="signature-zone"><canvas class="signature-canvas" id="sig-pr-m"></canvas><div class="sig-actions"><button class="btn-clear-sig" onclick="clearSig('sig-pr-m')"><i class="fas fa-eraser"></i> Effacer</button><label class="btn-import-sig"><i class="fas fa-upload"></i> Importer<input type="file" accept="image/*" style="display:none" onchange="importSig(this,'sig-pr-m')"></label></div></div></div>
+          <div><div class="sig-label">Signature du Notaire</div><div class="signature-zone"><canvas class="signature-canvas" id="sig-pr-n"></canvas><div class="sig-actions"><button class="btn-clear-sig" onclick="clearSig('sig-pr-n')"><i class="fas fa-eraser"></i> Effacer</button><label class="btn-import-sig"><i class="fas fa-upload"></i> Importer<input type="file" accept="image/*" style="display:none" onchange="importSig(this,'sig-pr-n')"></label></div></div></div>
+        </div>
+      </div>
+      <div class="actions-bar">
+        <button class="btn-preview" onclick="previewDoc('procuration')"><i class="fas fa-eye"></i> PRÉVISUALISER</button>
+        <button class="btn-pdf" onclick="downloadPDF('procuration')"><i class="fas fa-file-pdf"></i> TÉLÉCHARGER PDF</button>
+      </div>
+    </div>
+
+    <!-- ══ DONATION ══ -->
+    <div class="form-page" id="page-donation">
+      <div class="form-page-header"><h2><i class="fas fa-hand-holding-heart"></i> Donation entre Vifs</h2><p>Transfert irrévocable de biens du vivant du donateur</p></div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-user"></i> Donateur</div>
+        <div class="form-grid">
+          <div class="field-dash"><label>Nom & Prénom</label><input type="text" id="do-dnom" placeholder="Nom complet du donateur"></div>
+          <div class="field-dash"><label>Date de naissance</label><input type="date" id="do-ddob"></div>
+          <div class="field-dash"><label>Adresse</label><input type="text" id="do-dadr" placeholder="Adresse complète"></div>
+          <div class="field-dash"><label>Situation matrimoniale</label><select id="do-dsit"><option>Célibataire</option><option>Marié(e)</option><option>Divorcé(e)</option><option>Veuf(ve)</option></select></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-user-friends"></i> Donataire (Bénéficiaire)</div>
+        <div class="form-grid">
+          <div class="field-dash"><label>Nom & Prénom</label><input type="text" id="do-bnom" placeholder="Nom complet du donataire"></div>
+          <div class="field-dash"><label>Date de naissance</label><input type="date" id="do-bdob"></div>
+          <div class="field-dash"><label>Lien de parenté</label><input type="text" id="do-lien" placeholder="Ex: Enfant, Petit-enfant, Neveu..."></div>
+          <div class="field-dash"><label>Adresse</label><input type="text" id="do-badr" placeholder="Adresse complète"></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-gift"></i> Objet de la Donation</div>
+        <div class="form-grid">
+          <div class="field-dash"><label>Nature de la donation</label><select id="do-nature"><option>Donation en pleine propriété</option><option>Donation avec réserve d'usufruit</option><option>Donation-partage</option><option>Donation manuelle</option></select></div>
+          <div class="field-dash"><label>Valeur estimée (€)</label><input type="number" id="do-val" placeholder="Valeur totale"></div>
+          <div class="field-dash form-grid full"><label>Description des biens donnés</label><textarea id="do-desc" placeholder="Description précise des biens faisant l'objet de la donation..."></textarea></div>
+          <div class="field-dash"><label>Charges et conditions</label><textarea id="do-charges" placeholder="Conditions particulières, charges..."></textarea></div>
+          <div class="field-dash"><label>Date de l'acte</label><input type="date" id="do-date"></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-pen-nib"></i> Signatures</div>
+        <div class="form-grid">
+          <div><div class="sig-label">Signature du Donateur</div><div class="signature-zone"><canvas class="signature-canvas" id="sig-do-d"></canvas><div class="sig-actions"><button class="btn-clear-sig" onclick="clearSig('sig-do-d')"><i class="fas fa-eraser"></i> Effacer</button><label class="btn-import-sig"><i class="fas fa-upload"></i> Importer<input type="file" accept="image/*" style="display:none" onchange="importSig(this,'sig-do-d')"></label></div></div></div>
+          <div><div class="sig-label">Signature du Notaire</div><div class="signature-zone"><canvas class="signature-canvas" id="sig-do-n"></canvas><div class="sig-actions"><button class="btn-clear-sig" onclick="clearSig('sig-do-n')"><i class="fas fa-eraser"></i> Effacer</button><label class="btn-import-sig"><i class="fas fa-upload"></i> Importer<input type="file" accept="image/*" style="display:none" onchange="importSig(this,'sig-do-n')"></label></div></div></div>
+        </div>
+      </div>
+      <div class="actions-bar">
+        <button class="btn-preview" onclick="previewDoc('donation')"><i class="fas fa-eye"></i> PRÉVISUALISER</button>
+        <button class="btn-pdf" onclick="downloadPDF('donation')"><i class="fas fa-file-pdf"></i> TÉLÉCHARGER PDF</button>
+      </div>
+    </div>
+
+    <!-- ══ MARIAGE ══ -->
+    <div class="form-page" id="page-mariage">
+      <div class="form-page-header"><h2><i class="fas fa-ring"></i> Contrat de Mariage</h2><p>Régime matrimonial et dispositions patrimoniales des futurs époux</p></div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-user"></i> Futur(e) Époux/Épouse 1</div>
+        <div class="form-grid">
+          <div class="field-dash"><label>Nom & Prénom</label><input type="text" id="ma-1nom" placeholder="Nom complet"></div>
+          <div class="field-dash"><label>Date de naissance</label><input type="date" id="ma-1dob"></div>
+          <div class="field-dash"><label>Lieu de naissance</label><input type="text" id="ma-1lieu" placeholder="Ville, Département"></div>
+          <div class="field-dash"><label>Adresse</label><input type="text" id="ma-1adr" placeholder="Adresse complète"></div>
+          <div class="field-dash"><label>Profession</label><input type="text" id="ma-1prof" placeholder="Profession actuelle"></div>
+          <div class="field-dash"><label>Nationalité</label><input type="text" id="ma-1nat" value="Française"></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-user"></i> Futur(e) Époux/Épouse 2</div>
+        <div class="form-grid">
+          <div class="field-dash"><label>Nom & Prénom</label><input type="text" id="ma-2nom" placeholder="Nom complet"></div>
+          <div class="field-dash"><label>Date de naissance</label><input type="date" id="ma-2dob"></div>
+          <div class="field-dash"><label>Lieu de naissance</label><input type="text" id="ma-2lieu" placeholder="Ville, Département"></div>
+          <div class="field-dash"><label>Adresse</label><input type="text" id="ma-2adr" placeholder="Adresse complète"></div>
+          <div class="field-dash"><label>Profession</label><input type="text" id="ma-2prof" placeholder="Profession actuelle"></div>
+          <div class="field-dash"><label>Nationalité</label><input type="text" id="ma-2nat" value="Française"></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-balance-scale"></i> Régime Matrimonial</div>
+        <div class="form-grid">
+          <div class="field-dash"><label>Régime choisi</label>
+            <select id="ma-regime">
+              <option>Séparation de biens</option>
+              <option>Communauté réduite aux acquêts (légal)</option>
+              <option>Communauté universelle</option>
+              <option>Participation aux acquêts</option>
+            </select>
+          </div>
+          <div class="field-dash"><label>Date du mariage prévu</label><input type="date" id="ma-date-mariage"></div>
+          <div class="field-dash"><label>Lieu du mariage</label><input type="text" id="ma-lieu-mariage" placeholder="Mairie, Ville"></div>
+          <div class="field-dash"><label>Date de l'acte notarié</label><input type="date" id="ma-date"></div>
+          <div class="field-dash form-grid full"><label>Clauses particulières</label><textarea id="ma-clauses" placeholder="Clauses spécifiques au contrat..."></textarea></div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="section-title"><i class="fas fa-pen-nib"></i> Signatures</div>
+        <div class="form-grid">
+          <div><div class="sig-label">Signature Époux/Épouse 1</div><div class="signature-zone"><canvas class="signature-canvas" id="sig-ma-1"></canvas><div class="sig-actions"><button class="btn-clear-sig" onclick="clearSig('sig-ma-1')"><i class="fas fa-eraser"></i> Effacer</button><label class="btn-import-sig"><i class="fas fa-upload"></i> Importer<input type="file" accept="image/*" style="display:none" onchange="importSig(this,'sig-ma-1')"></label></div></div></div>
+          <div><div class="sig-label">Signature Époux/Épouse 2</div><div class="signature-zone"><canvas class="signature-canvas" id="sig-ma-2"></canvas><div class="sig-actions"><button class="btn-clear-sig" onclick="clearSig('sig-ma-2')"><i class="fas fa-eraser"></i> Effacer</button><label class="btn-import-sig"><i class="fas fa-upload"></i> Importer<input type="file" accept="image/*" style="display:none" onchange="importSig(this,'sig-ma-2')"></label></div></div></div>
+          <div><div class="sig-label">Signature du Notaire</div><div class="signature-zone"><canvas class="signature-canvas" id="sig-ma-n"></canvas><div class="sig-actions"><button class="btn-clear-sig" onclick="clearSig('sig-ma-n')"><i class="fas fa-eraser"></i> Effacer</button><label class="btn-import-sig"><i class="fas fa-upload"></i> Importer<input type="file" accept="image/*" style="display:none" onchange="importSig(this,'sig-ma-n')"></label></div></div></div>
+        </div>
+      </div>
+      <div class="actions-bar">
+        <button class="btn-preview" onclick="previewDoc('mariage')"><i class="fas fa-eye"></i> PRÉVISUALISER</button>
+        <button class="btn-pdf" onclick="downloadPDF('mariage')"><i class="fas fa-file-pdf"></i> TÉLÉCHARGER PDF</button>
+      </div>
+    </div>
+
+</div><!-- fin dash-content -->
+</div><!-- fin dash-layout -->
+
+<!-- MODAL APERCU -->
+<div class="modal-overlay" id="preview-modal">
+  <div class="modal-doc">
+    <div class="modal-doc-header">
+      <h3><i class="fas fa-file-alt"></i> <span id="modal-title">Aperçu du document</span></h3>
+      <button class="btn-close-modal" onclick="closeModal()">&times;</button>
+    </div>
+    <div class="doc-content" id="doc-preview"></div>
+  </div>
+</div>
+
+<div class="spinner-overlay" id="spinner"><div class="spinner"></div></div>
+<div class="toast" id="toast"></div>
+<script>
+// ══════════════════════════════════════════
+// NAVIGATION
+// ══════════════════════════════════════════
+var pageTitles = {
+    home: 'Tableau de bord <span>Cabinet Notarial</span>',
+    testament: 'Testament / Succession <span>Acte authentique</span>',
+    vente: 'Acte de Vente Immobilière <span>Transfert de propriété</span>',
+    compte: 'Compte Bancaire Bloqué <span>Déblocage de fonds</span>',
+    procuration: 'Procuration Notariée <span>Délégation de pouvoirs</span>',
+    donation: 'Donation entre Vifs <span>Transfert irrévocable</span>',
+    mariage: 'Contrat de Mariage <span>Régime matrimonial</span>'
+};
+
+function showPage(id) {
+    // Cacher toutes les pages
+    var pages = document.querySelectorAll('.form-page');
+    for (var i = 0; i < pages.length; i++) {
+        pages[i].style.display = 'none';
+        pages[i].classList.remove('active');
+    }
+    // Désactiver tous les nav-items
+    var navItems = document.querySelectorAll('.nav-item');
+    for (var j = 0; j < navItems.length; j++) navItems[j].classList.remove('active');
+
+    // Afficher la page demandée
+    var target = document.getElementById('page-' + id);
+    if (target) {
+        target.style.display = 'block';
+        target.classList.add('active');
+    }
+
+    // Activer le bon nav-item
+    for (var k = 0; k < navItems.length; k++) {
+        var oc = navItems[k].getAttribute('onclick') || '';
+        if (oc.indexOf("'" + id + "'") !== -1) navItems[k].classList.add('active');
+    }
+
+    // Titre topbar
+    var titles = {
+        home: 'Tableau de bord <span>Cabinet Notarial</span>',
+        testament: 'Testament / Succession <span>Acte authentique</span>',
+        vente: 'Acte de Vente Immobilière <span>Transfert de propriété</span>',
+        compte: 'Compte Bancaire Bloqué <span>Déblocage de fonds</span>',
+        procuration: 'Procuration Notariée <span>Délégation de pouvoirs</span>',
+        donation: 'Donation entre Vifs <span>Transfert irrévocable</span>',
+        mariage: 'Contrat de Mariage <span>Régime matrimonial</span>'
+    };
+    var tb = document.getElementById('topbar-title');
+    if (tb) tb.innerHTML = titles[id] || 'Cabinet Notarial';
+
+    window.scrollTo(0, 0);
+
+    // Init canvas après que la page soit visible
+    setTimeout(function() {
+        var page = document.getElementById('page-' + id);
+        if (!page) return;
+        var canvases = page.querySelectorAll('.signature-canvas');
+        for (var c = 0; c < canvases.length; c++) {
+            if (typeof setupCanvas === 'function') setupCanvas(canvases[c].id);
+        }
+        if (typeof updateSuggestions === 'function') updateSuggestions(id);
+    }, 80);
+}
+
+// ══════════════════════════════════════════
+// DATE TOPBAR
+// ══════════════════════════════════════════
+function updateDate() {
+    var d = new Date();
+    document.getElementById('topbar-date').textContent = d.toLocaleDateString('fr-FR', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+}
+
+// ══════════════════════════════════════════
+// HÉRITIERS DYNAMIQUES
+// ══════════════════════════════════════════
+var hCount = 0;
+function addHeritier() {
+    hCount++;
+    var n = hCount;
+    var div = document.createElement('div');
+    div.className = 'dynamic-block'; div.id = 'h-' + n;
+    div.innerHTML = '<h4>Héritier #' + n + '</h4>' +
+        '<button class="btn-remove-block" onclick="rmBlock(\'h-' + n + '\')"><i class="fas fa-times"></i></button>' +
+        '<div class="form-grid">' +
+        '<div class="field-dash"><label>Nom & Prénom</label><input type="text" id="h-nom-' + n + '" placeholder="Nom complet"></div>' +
+        '<div class="field-dash"><label>Lien</label><input type="text" id="h-lien-' + n + '" placeholder="Fils, Fille..."></div>' +
+        '<div class="field-dash"><label>Quote-part (%)</label><input type="number" id="h-part-' + n + '" placeholder="Ex: 50"></div>' +
+        '<div class="field-dash"><label>Nature</label><select id="h-nat-' + n + '"><option>Legs universel</option><option>Legs particulier</option><option>Legs à titre universel</option></select></div>' +
+        '</div>';
+    document.getElementById('ts-heritiers').appendChild(div);
+}
+
+var bCount = 0;
+function addBenef() {
+    bCount++;
+    var n = bCount;
+    var div = document.createElement('div');
+    div.className = 'dynamic-block'; div.id = 'b-' + n;
+    div.innerHTML = '<h4>Bénéficiaire #' + n + '</h4>' +
+        '<button class="btn-remove-block" onclick="rmBlock(\'b-' + n + '\')"><i class="fas fa-times"></i></button>' +
+        '<div class="form-grid">' +
+        '<div class="field-dash"><label>Nom & Prénom</label><input type="text" id="b-nom-' + n + '" placeholder="Nom complet"></div>' +
+        '<div class="field-dash"><label>Lien avec titulaire</label><input type="text" id="b-lien-' + n + '" placeholder="Enfant, Conjoint..."></div>' +
+        '<div class="field-dash"><label>Part (%)</label><input type="number" id="b-part-' + n + '" placeholder="Ex: 100"></div>' +
+        '<div class="field-dash"><label>IBAN du bénéficiaire</label><input type="text" id="b-iban-' + n + '" placeholder="IBAN"></div>' +
+        '</div>';
+    document.getElementById('cb-benefs').appendChild(div);
+}
+
+function rmBlock(id) { var el = document.getElementById(id); if (el) el.remove(); }
+
+// ══════════════════════════════════════════
+// SIGNATURES
+// ══════════════════════════════════════════
+var sigCtx = {}, sigDrawing = {};
+
+function initSig(id) {
+    var c = document.getElementById(id);
+    if (!c || sigCtx[id]) return;
+    setupCanvas(id);
+    c.addEventListener('mousedown', function(e) { e.preventDefault(); sigDrawing[id]=true; var p=getP(id,e.clientX,e.clientY); sigCtx[id].beginPath(); sigCtx[id].moveTo(p.x,p.y); });
+    c.addEventListener('mousemove', function(e) { e.preventDefault(); if(sigDrawing[id]){ var p=getP(id,e.clientX,e.clientY); sigCtx[id].lineTo(p.x,p.y); sigCtx[id].stroke(); } });
+    c.addEventListener('mouseup', function() { sigDrawing[id]=false; });
+    c.addEventListener('mouseleave', function() { sigDrawing[id]=false; });
+    c.addEventListener('touchstart', function(e) { e.preventDefault(); sigDrawing[id]=true; var t=e.touches[0],p=getP(id,t.clientX,t.clientY); sigCtx[id].beginPath(); sigCtx[id].moveTo(p.x,p.y); }, {passive:false});
+    c.addEventListener('touchmove', function(e) { e.preventDefault(); if(sigDrawing[id]){ var t=e.touches[0],p=getP(id,t.clientX,t.clientY); sigCtx[id].lineTo(p.x,p.y); sigCtx[id].stroke(); } }, {passive:false});
+    c.addEventListener('touchend', function() { sigDrawing[id]=false; });
+}
+
+function setupCanvas(id) {
+    var c = document.getElementById(id);
+    if (!c) return;
+    var dpr = window.devicePixelRatio || 1;
+    var w = c.parentElement.offsetWidth || 400;
+    var h = 150;
+    c.style.width = w + 'px';
+    c.style.height = h + 'px';
+    c.width = w * dpr;
+    c.height = h * dpr;
+    var ctx = c.getContext('2d');
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.scale(dpr, dpr);
+    ctx.strokeStyle = '#1a1a2e';
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    sigCtx[id] = ctx;
+    sigDrawing[id] = false;
+}
+
+function importSig(input, id) {
+    var file = input.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        var c = document.getElementById(id);
+        if (!c) return;
+        if (!sigCtx[id]) setupCanvas(id);
+        var img = new Image();
+        img.onload = function() {
+            sigCtx[id].clearRect(0, 0, c.width, c.height);
+            var cw = c.style.width ? parseInt(c.style.width) : c.offsetWidth;
+            var ch = c.style.height ? parseInt(c.style.height) : c.offsetHeight;
+            var scale = Math.min(cw/img.width, ch/img.height);
+            var x = (cw - img.width*scale)/2;
+            var y = (ch - img.height*scale)/2;
+            sigCtx[id].drawImage(img, x, y, img.width*scale, img.height*scale);
+        };
+        img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+}
+
+function getP(id,cx,cy) { var r=document.getElementById(id).getBoundingClientRect(); return {x:cx-r.left,y:cy-r.top}; }
+function clearSig(id) { var c=document.getElementById(id); if(c&&sigCtx[id]) sigCtx[id].clearRect(0,0,c.width,c.height); }
+function getSig(id) {
+    var c=document.getElementById(id); if(!c) return null;
+    var ctx=c.getContext('2d'), d=ctx.getImageData(0,0,c.width,c.height).data;
+    for(var i=3;i<d.length;i+=4){ if(d[i]>0) return c.toDataURL('image/png'); }
+    return null;
+}
+
+// ══════════════════════════════════════════
+// UTILITAIRES
+// ══════════════════════════════════════════
+function v(id) { var el=document.getElementById(id); return el ? (el.value||'').trim()||'—' : '—'; }
+function fmtD(d) { if(!d||d==='—') return '—'; var p=d.split('-'); return p.length===3?p[2]+'/'+p[1]+'/'+p[0]:d; }
+function fmtM(n) { if(!n||n==='—') return '—'; return Number(n).toLocaleString('fr-FR')+'&nbsp;€'; }
+function fmtMp(n) { if(!n||n==='—') return '—'; return Number(n).toLocaleString('fr-FR')+' €'; }
+function genRef(prefix) { return prefix+'-'+new Date().getFullYear()+'-'+Math.random().toString(36).slice(2,8).toUpperCase(); }
+
+function entete() {
+    return '<div class="doc-entete">' +
+        '<div class="balance"><i class="fas fa-balance-scale"></i></div>' +
+        '<h1>Mé DUPONT & ASSOCIÉS</h1>' +
+        '<p>Notaires Associés — 14 Place Vendôme, 75001 Paris</p>' +
+        '<p style="font-size:.72rem;">Tél. +33 1 42 60 00 00 · CRPCEN 75042</p>' +
+    '</div>';
+}
+function docRef(ref, date, titre) {
+    return '<div class="doc-ref">Réf. <strong>'+ref+'</strong> &nbsp;|&nbsp; Date : <strong>'+fmtD(date)+'</strong></div>' +
+           '<div class="doc-titre"><h2>'+titre+'</h2></div>';
+}
+function art(num, titre, contenu) {
+    return '<div class="doc-section"><h3>Article '+num+' — '+titre+'</h3>'+contenu+'</div>';
+}
+function sigBlock(sigs) {
+    var html = '<div class="doc-sig-zone">';
+    sigs.forEach(function(s) {
+        html += '<div class="sig-box"><div class="sig-lbl">'+s.label+'</div>';
+        html += s.img ? '<img src="'+s.img+'">' : '<div style="height:75px;border-bottom:1px solid #ccc;"></div>';
+        html += '<div class="sig-nm">'+s.name+'</div></div>';
+    });
+    return html + '</div>';
+}
+function footer(ref) {
+    return '<div class="doc-footer">Mé DUPONT & ASSOCIÉS · 14 Place Vendôme, 75001 Paris · CRPCEN 75042<br>Référence acte : '+ref+' · Document officiel soumis au secret professionnel notarial</div>';
+}
+
+// ══════════════════════════════════════════
+// GÉNÉRATION CONTENUS HTML
+// ══════════════════════════════════════════
+function buildTestament() {
+    var ref = genRef('TESTA');
+    var heritiers = [];
+    document.querySelectorAll('#ts-heritiers .dynamic-block').forEach(function(b) {
+        var id = b.id.split('-')[1];
+        heritiers.push({ nom:v('h-nom-'+id), lien:v('h-lien-'+id), part:v('h-part-'+id), nat:v('h-nat-'+id) });
+    });
+    var tbl = '<table class="doc-table"><thead><tr><th>Nom</th><th>Lien</th><th>Quote-part</th><th>Nature</th></tr></thead><tbody>';
+    heritiers.forEach(function(h){ tbl+='<tr><td><strong>'+h.nom+'</strong></td><td>'+h.lien+'</td><td>'+(h.part!=='—'?h.part+'%':'—')+'</td><td>'+h.nat+'</td></tr>'; });
+    tbl += '</tbody></table>';
+    var html = entete() + docRef(ref, v('ts-date'), 'ACTE AUTHENTIQUE DE TESTAMENT OLOGRAPHE');
+    html += art(1,'Identité du Testateur','<p>Par devant <strong>Mé Jean-Pierre DUPONT</strong>, Notaire soussigné (CRPCEN 75042), a comparu : <strong>'+v('ts-prenom')+' '+v('ts-nom')+'</strong>, né(e) le <strong>'+fmtD(v('ts-dob'))+'</strong> à <strong>'+v('ts-lieu')+'</strong>, de nationalité <strong>'+v('ts-nat')+'</strong>, '+v('ts-sit')+', demeurant <strong>'+v('ts-adr')+'</strong>. Le testateur déclare être sain d\'esprit et agir librement, conformément aux articles 902 et suivants du Code civil.</p>');
+    html += art(2,'Description du Patrimoine','<p>Le testateur déclare posséder un patrimoine estimé à <strong>'+fmtM(v('ts-val'))+'</strong>, dont <strong>'+fmtM(v('ts-immo'))+'</strong> en biens immobiliers. Composition : '+v('ts-desc')+'.</p>');
+    html += art(3,'Héritiers & Légataires','<p>Le testateur désigne les héritiers suivants :</p>'+tbl);
+    html += art(4,'Dispositions & Volontés','<p>'+v('ts-disp')+'</p>'+(v('ts-exec')!=='—'?'<p style="margin-top:8px;">Exécuteur testamentaire désigné : <strong>'+v('ts-exec')+'</strong>.</p>':''));
+    html += art(5,'Déclarations Finales','<p>Le présent acte a été dressé et lu au testateur qui y a adhéré. Établi conformément aux articles 969 à 980 du Code civil.</p>');
+    html += sigBlock([{label:'Signature du Testateur',img:getSig('sig-ts-t'),name:v('ts-prenom')+' '+v('ts-nom')},{label:'Signature du Notaire',img:getSig('sig-ts-n'),name:'Mé Jean-Pierre DUPONT'}]);
+    html += footer(ref);
+    return {html:html, ref:ref, titre:'Testament / Succession'};
+}
+
+function buildVente() {
+    var ref = genRef('VENTE');
+    var html = entete() + docRef(ref, v('vi-date'), 'ACTE AUTHENTIQUE DE VENTE IMMOBILIÈRE');
+    html += art(1,'Identité des Parties','<p><strong>VENDEUR :</strong> '+v('vi-vnom')+', né(e) le '+fmtD(v('vi-vdob'))+', de nationalité '+v('vi-vnat')+', demeurant '+v('vi-vadr')+'.</p><p style="margin-top:8px;"><strong>ACHETEUR :</strong> '+v('vi-anom')+', né(e) le '+fmtD(v('vi-adob'))+', de nationalité '+v('vi-anat')+', demeurant '+v('vi-aadr')+'.</p>');
+    html += art(2,'Description du Bien','<p>Le bien vendu est un(e) <strong>'+v('vi-type')+'</strong> d\'une surface de <strong>'+v('vi-surf')+' m²</strong>, situé(e) au <strong>'+v('vi-bien-adr')+'</strong>. Références cadastrales : '+v('vi-cadastre')+'.</p>');
+    html += art(3,'Prix & Conditions de Vente','<p>Le prix de vente convenu entre les parties est de <strong>'+fmtM(v('vi-prix'))+'</strong>, payable selon les modalités convenues. Ce prix est définitif et irrévocable.</p>');
+    html += art(4,'Transfert de Propriété','<p>Le transfert de propriété du bien immobilier décrit ci-dessus intervient ce jour, à la date de signature du présent acte authentique, conformément aux dispositions du Code civil.</p>');
+    html += art(5,'Déclarations Finales','<p>Les parties déclarent ne pas être en état de faillite ou de liquidation judiciaire. Le présent acte est dressé en vertu des dispositions des articles 1582 et suivants du Code civil.</p>');
+    html += sigBlock([{label:'Signature du Vendeur',img:getSig('sig-vi-v'),name:v('vi-vnom')},{label:'Signature de l\'Acheteur',img:getSig('sig-vi-a'),name:v('vi-anom')},{label:'Signature du Notaire',img:getSig('sig-vi-n'),name:'Mé Jean-Pierre DUPONT'}]);
+    html += footer(ref);
+    return {html:html, ref:ref, titre:'Acte de Vente Immobilière'};
+}
+
+function buildCompte() {
+    var ref = genRef('DBLOC');
+    var benefs = [];
+    document.querySelectorAll('#cb-benefs .dynamic-block').forEach(function(b) {
+        var id = b.id.split('-')[1];
+        benefs.push({ nom:v('b-nom-'+id), lien:v('b-lien-'+id), part:v('b-part-'+id), iban:v('b-iban-'+id) });
+    });
+    var tbl = '<table class="doc-table"><thead><tr><th>Bénéficiaire</th><th>Lien</th><th>Part</th><th>IBAN</th></tr></thead><tbody>';
+    benefs.forEach(function(b){ tbl+='<tr><td><strong>'+b.nom+'</strong></td><td>'+b.lien+'</td><td>'+(b.part!=='—'?b.part+'%':'—')+'</td><td>'+b.iban+'</td></tr>'; });
+    tbl += '</tbody></table>';
+    var html = entete() + docRef(ref, v('cb-date'), 'ACTE NOTARIÉ DE DÉBLOCAGE DE COMPTE BANCAIRE');
+    html += art(1,'Identification du Compte','<p>Le compte appartenant à <strong>'+v('cb-nom')+'</strong>'+(v('cb-deces')!=='—'?' (décédé(e) le '+fmtD(v('cb-deces'))+')':'')+', domicilié(e) <strong>'+v('cb-adr')+'</strong>, portant le numéro <strong>'+v('cb-compte')+'</strong> auprès de <strong>'+v('cb-banque')+'</strong> (agence de '+v('cb-agence')+') est bloqué depuis le motif suivant : <strong>'+v('cb-motif')+'</strong>.</p>');
+    html += art(2,'Montant des Fonds Bloqués','<p>Le montant total des fonds actuellement bloqués s\'élève à <strong>'+fmtM(v('cb-montant'))+'</strong>. Référence de la décision : <strong>'+v('cb-ref-judiciaire')+'</strong>.</p>');
+    html += art(3,'Bénéficiaires du Déblocage','<p>Les fonds seront débloqués au bénéfice des personnes suivantes :</p>'+tbl);
+    html += art(4,'Observations','<p>'+v('cb-obs')+'</p>');
+    html += art(5,'Décision de Déblocage','<p>Par le présent acte notarié, Mé Jean-Pierre DUPONT, Notaire soussigné, certifie que les conditions légales de déblocage sont réunies et autorise le déblocage des fonds au profit des bénéficiaires désignés, conformément aux dispositions du Code civil et du Code monétaire et financier.</p>');
+    html += sigBlock([{label:'Signature & Sceau du Notaire',img:getSig('sig-cb-n'),name:'Mé Jean-Pierre DUPONT'}]);
+    html += footer(ref);
+    return {html:html, ref:ref, titre:'Déblocage Compte Bancaire'};
+}
+
+function buildProcuration() {
+    var ref = genRef('PROCU');
+    var html = entete() + docRef(ref, v('pr-date'), 'PROCURATION NOTARIÉE AUTHENTIQUE');
+    html += art(1,'Identité du Mandant','<p><strong>'+v('pr-mnom')+'</strong>, né(e) le <strong>'+fmtD(v('pr-mdob'))+'</strong>, de nationalité <strong>'+v('pr-mnat')+'</strong>, demeurant <strong>'+v('pr-madr')+'</strong>, dénommé(e) ci-après "le Mandant".</p>');
+    html += art(2,'Identité du Mandataire','<p><strong>'+v('pr-tnom')+'</strong>, né(e) le <strong>'+fmtD(v('pr-tdob'))+'</strong>, demeurant <strong>'+v('pr-tadr')+'</strong>, lien avec le mandant : <strong>'+v('pr-lien')+'</strong>, dénommé(e) ci-après "le Mandataire".</p>');
+    html += art(3,'Pouvoirs Conférés','<p>Le Mandant confère au Mandataire une <strong>'+v('pr-nature')+'</strong> avec les pouvoirs suivants :</p><p style="margin-top:8px;">'+v('pr-pouvoirs')+'</p>');
+    html += art(4,'Durée & Conditions','<p>La présente procuration est valable pour une durée de : <strong>'+v('pr-duree')+'</strong>. Elle est révocable à tout moment par le Mandant par acte notarié.</p>');
+    html += art(5,'Déclarations','<p>Le Mandant déclare agir librement et en pleine connaissance de cause. Le Mandataire accepte la mission qui lui est confiée. Le présent acte est dressé conformément aux articles 1984 et suivants du Code civil.</p>');
+    html += sigBlock([{label:'Signature du Mandant',img:getSig('sig-pr-m'),name:v('pr-mnom')},{label:'Signature du Notaire',img:getSig('sig-pr-n'),name:'Mé Jean-Pierre DUPONT'}]);
+    html += footer(ref);
+    return {html:html, ref:ref, titre:'Procuration Notariée'};
+}
+
+function buildDonation() {
+    var ref = genRef('DONAT');
+    var html = entete() + docRef(ref, v('do-date'), 'ACTE AUTHENTIQUE DE DONATION ENTRE VIFS');
+    html += art(1,'Identité du Donateur','<p><strong>'+v('do-dnom')+'</strong>, né(e) le <strong>'+fmtD(v('do-ddob'))+'</strong>, '+v('do-dsit')+', demeurant <strong>'+v('do-dadr')+'</strong>, dénommé(e) ci-après "le Donateur".</p>');
+    html += art(2,'Identité du Donataire','<p><strong>'+v('do-bnom')+'</strong>, né(e) le <strong>'+fmtD(v('do-bdob'))+'</strong>, demeurant <strong>'+v('do-badr')+'</strong>, lien de parenté : <strong>'+v('do-lien')+'</strong>, dénommé(e) ci-après "le Donataire".</p>');
+    html += art(3,'Objet de la Donation','<p>Nature : <strong>'+v('do-nature')+'</strong>. Valeur estimée : <strong>'+fmtM(v('do-val'))+'</strong>.</p><p style="margin-top:8px;">Description : '+v('do-desc')+'</p>');
+    html += art(4,'Charges & Conditions','<p>'+v('do-charges')+'</p>');
+    html += art(5,'Déclarations','<p>Le Donateur déclare faire cette donation librement, de son plein gré et en pleine santé d\'esprit. Le Donataire accepte la donation dans les conditions définies ci-dessus. Le présent acte est établi conformément aux articles 894 et suivants du Code civil.</p>');
+    html += sigBlock([{label:'Signature du Donateur',img:getSig('sig-do-d'),name:v('do-dnom')},{label:'Signature du Notaire',img:getSig('sig-do-n'),name:'Mé Jean-Pierre DUPONT'}]);
+    html += footer(ref);
+    return {html:html, ref:ref, titre:'Donation entre Vifs'};
+}
+
+function buildMariage() {
+    var ref = genRef('MARIA');
+    var html = entete() + docRef(ref, v('ma-date'), 'CONTRAT DE MARIAGE — ACTE NOTARIÉ');
+    html += art(1,'Identité des Futurs Époux','<p><strong>Époux/Épouse 1 :</strong> '+v('ma-1nom')+', né(e) le '+fmtD(v('ma-1dob'))+' à '+v('ma-1lieu')+', profession : '+v('ma-1prof')+', nationalité : '+v('ma-1nat')+', demeurant '+v('ma-1adr')+'.</p><p style="margin-top:8px;"><strong>Époux/Épouse 2 :</strong> '+v('ma-2nom')+', né(e) le '+fmtD(v('ma-2dob'))+' à '+v('ma-2lieu')+', profession : '+v('ma-2prof')+', nationalité : '+v('ma-2nat')+', demeurant '+v('ma-2adr')+'.</p>');
+    html += art(2,'Régime Matrimonial Choisi','<p>Les futurs époux déclarent adopter le régime de la <strong>'+v('ma-regime')+'</strong>, conformément aux dispositions du Code civil. Ce régime régira l\'ensemble de leurs relations patrimoniales à compter du jour de la célébration du mariage.</p>');
+    html += art(3,'Mariage Prévu','<p>Le mariage est prévu le <strong>'+fmtD(v('ma-date-mariage'))+'</strong> à <strong>'+v('ma-lieu-mariage')+'</strong>. Le présent contrat prend effet à compter de la célébration du mariage.</p>');
+    html += art(4,'Clauses Particulières','<p>'+v('ma-clauses')+'</p>');
+    html += art(5,'Déclarations Finales','<p>Les futurs époux déclarent avoir pleinement conscience des effets juridiques du régime matrimonial choisi. Le présent acte est établi conformément aux articles 1387 et suivants du Code civil.</p>');
+    html += sigBlock([{label:'Signature Époux/Épouse 1',img:getSig('sig-ma-1'),name:v('ma-1nom')},{label:'Signature Époux/Épouse 2',img:getSig('sig-ma-2'),name:v('ma-2nom')},{label:'Signature du Notaire',img:getSig('sig-ma-n'),name:'Mé Jean-Pierre DUPONT'}]);
+    html += footer(ref);
+    return {html:html, ref:ref, titre:'Contrat de Mariage'};
+}
+
+var builders = { testament:buildTestament, vente:buildVente, compte:buildCompte, procuration:buildProcuration, donation:buildDonation, mariage:buildMariage };
+
+// ══════════════════════════════════════════
+// PRÉVISUALISATION
+// ══════════════════════════════════════════
+function previewDoc(type) {
+    var result = builders[type]();
+    document.getElementById('modal-title').textContent = 'Aperçu — ' + result.titre;
+    document.getElementById('doc-preview').innerHTML = result.html;
+    document.getElementById('preview-modal').classList.add('open');
+}
+function closeModal() { document.getElementById('preview-modal').classList.remove('open'); }
+
+// ══════════════════════════════════════════
+// GÉNÉRATION PDF
+// ══════════════════════════════════════════
+function downloadPDF(type) {
+    showSpinner(true);
+    setTimeout(function() {
+        try {
+            var result = builders[type]();
+            var jsPDF = window.jspdf.jsPDF;
+            var doc = new jsPDF({ unit:'mm', format:'a4' });
+            var W = doc.internal.pageSize.getWidth();
+            var M = 18, maxW = W - M*2, y = 20;
+
+            function cp(n) { if(y+n>272){ doc.addPage(); y=20; } }
+            function line(txt, sz, bold, color, align) {
+                doc.setFontSize(sz||9);
+                doc.setFont('helvetica', bold?'bold':'normal');
+                if(color) doc.setTextColor(color[0],color[1],color[2]); else doc.setTextColor(50,50,50);
+                var lines = doc.splitTextToSize(txt, maxW);
+                cp(lines.length*5+3);
+                doc.text(lines, align==='center'?W/2:M, y, align?{align:align}:{});
+                y += lines.length*5+3;
+            }
+            function secTitle(t) {
+                cp(12); doc.setFillColor(240,208,128); doc.rect(M,y-4,maxW,8,'F');
+                doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.setTextColor(26,26,46);
+                doc.text(t, M+3, y+1); y+=10;
+            }
+
+            // Header
+            doc.setFillColor(26,26,46); doc.rect(0,0,W,38,'F');
+            doc.setFontSize(13); doc.setFont('helvetica','bold'); doc.setTextColor(201,168,76);
+            doc.text('Mé DUPONT & ASSOCIÉS — NOTAIRES ASSOCIÉS', W/2, 14, {align:'center'});
+            doc.setFontSize(8); doc.setTextColor(180,180,180);
+            doc.text('14 Place Vendôme, 75001 Paris · Tél. +33 1 42 60 00 00 · CRPCEN 75042', W/2, 22, {align:'center'});
+            y = 48;
+
+            // Titre
+            doc.setFontSize(12); doc.setFont('helvetica','bold'); doc.setTextColor(26,26,46);
+            doc.text(result.titre.toUpperCase(), W/2, y, {align:'center'}); y+=6;
+            doc.setDrawColor(201,168,76); doc.setLineWidth(0.8);
+            doc.line(M,y,W-M,y); y+=6;
+            doc.setFontSize(8); doc.setFont('helvetica','italic'); doc.setTextColor(120,120,120);
+            doc.text('Référence : ' + result.ref, W/2, y, {align:'center'}); y+=12;
+
+            // Contenu selon type (lignes de texte extraites)
+            var tmp = document.createElement('div');
+            tmp.innerHTML = result.html;
+            tmp.querySelectorAll('.doc-section').forEach(function(sec) {
+                var h3 = sec.querySelector('h3');
+                if(h3) secTitle(h3.textContent);
+                sec.querySelectorAll('p').forEach(function(p) {
+                    var txt = p.textContent.trim();
+                    if(txt) line(txt, 9, false, null);
+                });
+                var tbl = sec.querySelector('table');
+                if(tbl) {
+                    var headers = []; tbl.querySelectorAll('th').forEach(function(th){ headers.push(th.textContent); });
+                    if(headers.length>0){
+                        cp(10); doc.setFillColor(26,26,46); doc.rect(M,y,maxW,7,'F');
+                        doc.setFontSize(7.5); doc.setFont('helvetica','bold'); doc.setTextColor(255,255,255);
+                        var cw = maxW/headers.length, cx=M+2;
+                        headers.forEach(function(h){ doc.text(h,cx,y+5); cx+=cw; }); y+=7;
+                        tbl.querySelectorAll('tbody tr').forEach(function(tr,idx){
+                            cp(8);
+                            if(idx%2===0){ doc.setFillColor(250,250,247); doc.rect(M,y,maxW,7,'F'); }
+                            doc.setFontSize(8); doc.setFont('helvetica','normal'); doc.setTextColor(50,50,50);
+                            cx=M+2;
+                            tr.querySelectorAll('td').forEach(function(td){ doc.text(td.textContent.slice(0,28),cx,y+5); cx+=cw; });
+                            y+=7;
+                        });
+                        y+=4;
+                    }
+                }
+            });
+
+            // Signatures
+            y+=6; cp(50);
+            doc.setDrawColor(201,168,76); doc.setLineWidth(0.5); doc.line(M,y,W-M,y); y+=8;
+            var sigs = tmp.querySelectorAll('.sig-box');
+            var sw = maxW/Math.max(sigs.length,1);
+            sigs.forEach(function(sb,i){
+                var lbl=sb.querySelector('.sig-lbl'); var nm=sb.querySelector('.sig-nm');
+                var img=sb.querySelector('img');
+                doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.setTextColor(100,100,100);
+                doc.text(lbl?lbl.textContent:'Signature', M+sw*i+sw/2, y, {align:'center'});
+                if(img&&img.src&&img.src.startsWith('data:')){ try{ doc.addImage(img.src,'PNG',M+sw*i+4,y+4,sw-8,25); }catch(e){} }
+                else{ doc.setDrawColor(180,180,180); doc.line(M+sw*i+4,y+28,M+sw*(i+1)-4,y+28); }
+                doc.setFontSize(8); doc.setFont('helvetica','bold'); doc.setTextColor(26,26,46);
+                doc.text(nm?nm.textContent:'', M+sw*i+sw/2, y+34, {align:'center'});
+            });
+            y+=40;
+
+            // Pied de page
+            var tot=doc.internal.getNumberOfPages();
+            for(var pg=1;pg<=tot;pg++){
+                doc.setPage(pg);
+                doc.setFontSize(7); doc.setFont('helvetica','italic'); doc.setTextColor(150,150,150);
+                doc.text('Réf. '+result.ref+' — Mé DUPONT & ASSOCIÉS — Document officiel soumis au secret professionnel notarial — Page '+pg+'/'+tot, W/2, 290, {align:'center'});
+            }
+
+            doc.save(result.titre.replace(/\s+/g,'_')+'_'+result.ref+'.pdf');
+            showToast('PDF généré avec succès !', 'success');
+        } catch(err) {
+            console.error(err);
+            showToast('Erreur génération PDF', 'error');
+        }
+        showSpinner(false);
+    }, 500);
+}
+
+// ══════════════════════════════════════════
+// UTILITAIRES UI
+// ══════════════════════════════════════════
+function showSpinner(v) { document.getElementById('spinner').classList.toggle('show',v); }
+function showToast(msg,type) {
+    var t=document.getElementById('toast');
+    t.textContent=msg; t.className='toast '+(type||'success'); t.classList.add('show');
+    clearTimeout(t._t); t._t=setTimeout(function(){t.classList.remove('show');},3500);
+}
+
+// ══════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════
+// ══════════════════════════════════════════
+// SUGGESTIONS INTELLIGENTES
+// ══════════════════════════════════════════
+function updateSuggestions(page) {
+    if (page === 'testament') {
+        var nom = document.getElementById('ts-nom') ? document.getElementById('ts-nom').value.trim() : '';
+        var prenom = document.getElementById('ts-prenom') ? document.getElementById('ts-prenom').value.trim() : '';
+        // Suggérer exécuteur testamentaire basé sur le nom
+        suggestField('ts-exec', nom && prenom ? [
+            prenom + ' ' + nom + ' (lui-même)',
+            'Maître Jean-Pierre DUPONT (Notaire)',
+            'Un proche de confiance'
+        ] : ['Maître Jean-Pierre DUPONT (Notaire)']);
+        // Suggérer dispositions basées sur situation
+        var sit = document.getElementById('ts-sit') ? document.getElementById('ts-sit').value : '';
+        var dispSuggests = [
+            'Je lègue l'ensemble de mes biens à parts égales entre mes héritiers.',
+            'Je lègue mon bien immobilier à mon conjoint en pleine propriété.',
+            'Je souhaite que mes avoirs bancaires soient répartis équitablement.'
+        ];
+        if (sit === 'Marié(e)') dispSuggests.unshift('Je lègue la totalité de mes biens à mon conjoint survivant.');
+        if (sit === 'Veuf(ve)') dispSuggests.unshift('Je lègue mes biens à mes enfants par parts égales.');
+        suggestField('ts-disp', dispSuggests);
+    }
+    if (page === 'vente') {
+        var prix = document.getElementById('vi-prix') ? document.getElementById('vi-prix').value : '';
+        var type = document.getElementById('vi-type') ? document.getElementById('vi-type').value : '';
+        var adr = document.getElementById('vi-bien-adr') ? document.getElementById('vi-bien-adr').value.trim() : '';
+        suggestField('vi-cadastre', adr ? [
+            'Section A n° 123 — Commune de ' + (adr.split(',').pop() || 'Paris'),
+            'Section B n° 456 — À vérifier auprès du cadastre',
+            'Non communiquées — Vérification en cours'
+        ] : ['Section A n° 123', 'Section B n° 456', 'À vérifier auprès du cadastre']);
+    }
+    if (page === 'compte') {
+        var banque = document.getElementById('cb-banque') ? document.getElementById('cb-banque').value.trim() : '';
+        var motif = document.getElementById('cb-motif') ? document.getElementById('cb-motif').value : '';
+        suggestField('cb-obs', [
+            motif === 'Succession' ? 'Déblocage ordonné suite au décès du titulaire et règlement de la succession.' :
+            motif === 'Décision judiciaire' ? 'Déblocage ordonné par décision judiciaire définitive.' :
+            'Déblocage autorisé après vérification des conditions légales.',
+            'Aucune opposition n'a été signalée par les créanciers.',
+            banque ? 'L'établissement ' + banque + ' a été notifié du présent acte.' : 'L'établissement bancaire a été notifié.'
+        ]);
+        suggestField('cb-ref-judiciaire', [
+            'Jugement TGI Paris n° 2024-' + Math.floor(Math.random()*9000+1000),
+            'Ordonnance du ' + new Date().toLocaleDateString('fr-FR'),
+            'Non applicable — Succession directe'
+        ]);
+    }
+    if (page === 'procuration') {
+        var mnom = document.getElementById('pr-mnom') ? document.getElementById('pr-mnom').value.trim() : '';
+        var nat = document.getElementById('pr-nature') ? document.getElementById('pr-nature').value : '';
+        suggestField('pr-pouvoirs', [
+            nat === 'Procuration générale' ?
+                'Représenter le mandant dans tous les actes de la vie civile, signer tout document, gérer tous les comptes bancaires et biens immobiliers.' :
+            nat === 'Procuration immobilière' ?
+                'Signer tout acte de vente, d'achat ou de location immobilière, percevoir les loyers, régler les charges.' :
+            nat === 'Procuration bancaire' ?
+                'Gérer les comptes bancaires, effectuer des virements, retirer des fonds, signer tout document bancaire.' :
+                'Représenter le mandant pour les actes spécifiés ci-dessous uniquement.',
+            'Effectuer toute démarche administrative auprès des organismes publics et privés.',
+            mnom ? 'Agir au nom et pour le compte de ' + mnom + ' dans tous les actes mentionnés.' : ''
+        ].filter(Boolean));
+        suggestField('pr-duree', [
+            '1 an à compter de la signature',
+            'Durée indéterminée, révocable à tout moment',
+            'Jusqu'au ' + new Date(new Date().setFullYear(new Date().getFullYear()+1)).toLocaleDateString('fr-FR'),
+            'Pour la durée de l'opération concernée uniquement'
+        ]);
+    }
+    if (page === 'donation') {
+        var dnom = document.getElementById('do-dnom') ? document.getElementById('do-dnom').value.trim() : '';
+        var bnom = document.getElementById('do-bnom') ? document.getElementById('do-bnom').value.trim() : '';
+        var lien = document.getElementById('do-lien') ? document.getElementById('do-lien').value.trim() : '';
+        var nat = document.getElementById('do-nature') ? document.getElementById('do-nature').value : '';
+        suggestField('do-desc', [
+            'Appartement situé au ' + (document.getElementById('do-dadr') ? document.getElementById('do-dadr').value || '...' : '...'),
+            nat === 'Donation avec réserve d'usufruit' ?
+                'Le donateur conserve l'usufruit viager du bien. La nue-propriété est transmise au donataire.' :
+                'Bien transmis en pleine propriété, libre de toute occupation.',
+            'Comptes bancaires et placements financiers désignés.'
+        ]);
+        suggestField('do-charges', [
+            lien === 'Enfant' || lien === 'Fils' || lien === 'Fille' ?
+                'Le donataire s'engage à prendre soin du donateur en cas de besoin.' :
+                'Aucune charge particulière n'est imposée au donataire.',
+            'Le donataire devra rapporter ce bien à la succession.',
+            'Donation consentie hors part successorale (avancement de part).',
+            'Aucune condition particulière.'
+        ]);
+    }
+    if (page === 'mariage') {
+        var regime = document.getElementById('ma-regime') ? document.getElementById('ma-regime').value : '';
+        suggestField('ma-clauses', [
+            regime === 'Séparation de biens' ?
+                'Chaque époux conserve la propriété exclusive des biens acquis avant et pendant le mariage. Les dettes de l'un n'engagent pas l'autre.' :
+            regime === 'Communauté universelle' ?
+                'Tous les biens présents et futurs des époux, quelle que soit leur origine, constituent une masse commune.' :
+            regime === 'Participation aux acquêts' ?
+                'Pendant le mariage, le régime fonctionne comme une séparation de biens. À la dissolution, chaque époux participe aux acquêts de l'autre.' :
+                'Les acquêts réalisés pendant le mariage sont communs. Les biens propres restent la propriété exclusive de chaque époux.',
+            'Clause d'attribution intégrale de la communauté au conjoint survivant.',
+            'Aucune clause particulière en dehors du régime légal choisi.'
+        ]);
+    }
+}
+
+function suggestField(fieldId, suggestions) {
+    var field = document.getElementById(fieldId);
+    if (!field) return;
+    var wrap = field.parentElement;
+    // Supprimer anciennes suggestions
+    var old = wrap.querySelector('.suggestions-box');
+    if (old) old.remove();
+    if (!suggestions || suggestions.length === 0) return;
+    var box = document.createElement('div');
+    box.className = 'suggestions-box';
+    var lbl = document.createElement('div');
+    lbl.className = 'sug-label';
+    lbl.innerHTML = '<i class="fas fa-lightbulb"></i> Suggestions :';
+    box.appendChild(lbl);
+    suggestions.forEach(function(s) {
+        if (!s) return;
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'sug-btn';
+        btn.textContent = s.length > 60 ? s.slice(0, 60) + '...' : s;
+        btn.title = s;
+        btn.onclick = function() {
+            field.value = s;
+            box.querySelectorAll('.sug-btn').forEach(function(b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+        };
+        box.appendChild(btn);
+    });
+    wrap.appendChild(box);
+}
+
+// Ajouter listeners pour mettre à jour suggestions en temps réel
+function addSmartListeners() {
+    var triggerMap = {
+        'ts-nom': 'testament', 'ts-prenom': 'testament', 'ts-sit': 'testament',
+        'vi-prix': 'vente', 'vi-type': 'vente', 'vi-bien-adr': 'vente',
+        'cb-banque': 'compte', 'cb-motif': 'compte',
+        'pr-mnom': 'procuration', 'pr-nature': 'procuration',
+        'do-dnom': 'donation', 'do-lien': 'donation', 'do-nature': 'donation', 'do-dadr': 'donation',
+        'ma-regime': 'mariage'
+    };
+    Object.keys(triggerMap).forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) {
+            el.addEventListener('input', function() { updateSuggestions(triggerMap[id]); });
+            el.addEventListener('change', function() { updateSuggestions(triggerMap[id]); });
+        }
+    });
+}
+
+window.addEventListener('load', function() {
+    updateDate();
+    var today = new Date().toISOString().split('T')[0];
+    ['ts-date','vi-date','cb-date','pr-date','do-date','ma-date'].forEach(function(id){
+        var el=document.getElementById(id); if(el) el.value=today;
+    });
+    // Fermer modal
+    document.getElementById('preview-modal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+    // 1 héritier + 1 bénéf par défaut
+    addHeritier(); addBenef();
+    // Listeners suggestions
+    addSmartListeners();
+    // Initialiser l'affichage des pages correctement
+    var allPages = document.querySelectorAll('.form-page');
+    for (var i = 0; i < allPages.length; i++) {
+        allPages[i].style.display = 'none';
+    }
+    var homePage = document.getElementById('page-home');
+    if (homePage) { homePage.style.display = 'block'; homePage.classList.add('active'); }
+    // Les canvas sont initialisés à la demande dans showPage
+});
+</script>
+</body>
+</html>
